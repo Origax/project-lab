@@ -1,0 +1,14 @@
+:root {
+	--primary: #004d74;
+	--bg-body: #efefef;
+	--light: #fff;
+	--light-ice: #fafafa;
+}
+
+body {
+	background-color: var(--bg-body);
+}
+
+.text-primary {
+	color: var(--primary);
+}

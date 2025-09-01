@@ -1,0 +1,26 @@
+version: '3.8'
+
+services: 
+  frontend: #nome do serviço
+    container_name: frontend #nome do container
+    ports: #portas do localhost | Porta externa:Porta interna
+      - "5173:5173"
+    build: #build de localização do dockerfile
+      context: ./frontend #pasta de inicialização
+      dockerfile: Dockerfile #arquivo
+    volumes: #
+      - ./frontend:/app #arquivo externo : arquivo interno
+      - /app/node_modules #arquivo interno / arquivo node_modules para salvar as informações.
+    command: npm run dev
+
+  # backend: #nome do serviço
+  #   container_name: backend #nome do container
+  #   ports: #portas do localhost
+  #     - '3000:3001' #node puro / as portas não devem ser iguais.
+  #   build: #build de localização do dockerfile
+  #     context: ./backend #pasta de inicialização
+  #     dockerfile: Dockerfile #arquivo
+  #   volumes: #
+  #     - ./backend:/app #arquivo externo : arquivo interno
+  #     - /app/node_modules #arquivo interno / arquivo node_modules para salvar as informações.
+  #   command: npm run dev
