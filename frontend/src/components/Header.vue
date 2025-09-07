@@ -5,7 +5,7 @@
 		<div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
 			<!-- Logo da Ether -->
 			<div class="flex items-center space-x-2 w-40">
-				<a href="/" class="logo"><img src="../images/logo.png" alt="" /></a>
+				<a href="/" class="logo"><img src="/images/logo.png" alt="" /></a>
 			</div>
 
 			<div class="text-right">

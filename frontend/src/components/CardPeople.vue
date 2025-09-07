@@ -92,11 +92,7 @@ let { statusName, generousSelectName } = useGetStatus()
 						<div class="card-header p-2 h-72 mobile-tablet:h-96">
 							<img
 								class="img rounded-lg w-full h-full object-cover object-top"
-								:src="
-									people.urlFoto == null
-										? './images/no-image.webp' // Verificar os sem imagens depois :)
-										: people.urlFoto
-								"
+								:src="people?.urlFoto ?? '/images/no-image.webp'"
 								alt="Pessoa Imagem"
 							/>
 							<div class="card-flag">

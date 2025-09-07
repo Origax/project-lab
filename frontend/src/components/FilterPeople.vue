@@ -2,6 +2,8 @@
 import { onMounted, ref } from 'vue'
 import { useGetPeopleFilter } from '../composebles/useGetPeopleFilter'
 import { useGetStatus } from '../composebles/useFilter'
+// import Swal, { SweetAlertResult } from 'sweetalert2'
+// import 'sweetalert2/dist/sweetalert2.min.css'
 
 const { status, updateStatus, nameGenerous, statusGenerous } = useGetStatus()
 const { getPeoples, clearData } = useGetPeopleFilter()
@@ -120,6 +122,7 @@ const withParams = () => {
 						>
 							<input
 								id="age-min"
+								v-mask="'##'"
 								class="border-2 px-2 py-1 border-solid border-gray-300 rounded w-full"
 								type="number"
 								v-model="ageMin"
@@ -130,10 +133,11 @@ const withParams = () => {
 							/>
 							<input
 								id="age-max"
+								v-mask="'###'"
 								class="border-2 px-2 py-1 border-solid border-gray-300 rounded w-full"
 								type="number"
 								v-model="ageMax"
-								key="age-min"
+								key="age-max"
 								min="0"
 								max="190"
 								placeholder="Idade Máxima"

@@ -19,16 +19,6 @@ const dayDifference = computed(() => {
 	return Math.floor(difference / (1000 * 3600 * 24))
 })
 
-const isModalOpen = ref(false)
-
-const openModal = () => {
-	isModalOpen.value = true
-}
-
-const closeModal = () => {
-	isModalOpen.value = false
-}
-
 onMounted(async () => {
 	people.value = await getPeople(route.params.id)
 })
@@ -84,13 +74,9 @@ onMounted(async () => {
 						v-if="people?.ultimaOcorrencia?.dataLocalizacao == null"
 						class="help-with-detail"
 					>
-						<button
-							id="btn-help"
-							@click="openModal()"
-							class="bg-primary text-white font-bold rounded px-5 py-2"
-						>
-							Ajude a Encontrar
-						</button>
+						<div id="modal">
+							<Modal />
+						</div>
 					</div>
 				</div>
 				<div
@@ -194,10 +180,7 @@ onMounted(async () => {
 				</div>
 			</div>
 			<div v-else class="else-div-details w-full h-full d-flex justify-center align-center">
-				<h3>Aguarde carregar as informações</h3>
-			</div>
-			<div id="modal" class="h-72">
-				<Modal />
+				<span class="loader"></span>
 			</div>
 		</div>
 	</div>
@@ -245,14 +228,29 @@ onMounted(async () => {
 	fill: var(--light);
 }
 
+.loader {
+	width: 48px;
+	height: 48px;
+	border: 5px solid #fff;
+	border-bottom-color: #ff3d00;
+	border-radius: 50%;
+	display: inline-block;
+	box-sizing: border-box;
+	animation: rotation 1s linear infinite;
+}
+
+@keyframes rotation {
+	0% {
+		transform: rotate(0deg);
+	}
+	100% {
+		transform: rotate(360deg);
+	}
+}
+
 @media (min-width: 578px) and (max-width: 820px) {
 	.image-content {
 		height: 380px;
 	}
-}
-
-@media (max-width: 991px) {
-	/* .image-content {
-	} */
 }
 </style>

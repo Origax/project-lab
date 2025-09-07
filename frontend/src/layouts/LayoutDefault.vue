@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import Header from '../components/Header.vue'
 import Footer from '../components/Footer.vue'
-// import CardPeople from '../components/CardPeople.vue'
 import FilterPeople from '../components/FilterPeople.vue'
 </script>
 
@@ -10,7 +9,6 @@ import FilterPeople from '../components/FilterPeople.vue'
 	<main id="main-home">
 		<FilterPeople />
 		<router-view />
-		<!-- <CardPeople /> -->
 	</main>
 	<Footer />
 </template>

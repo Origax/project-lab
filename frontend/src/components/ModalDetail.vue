@@ -1,11 +1,18 @@
 <script setup lang="ts">
 import { ref } from 'vue'
+import { usePostPeopleDetail } from '../composebles/usePostPeopleDetail'
+import Swal, { SweetAlertResult } from 'sweetalert2'
+import 'sweetalert2/dist/sweetalert2.min.css'
+
+const { postPeoples } = usePostPeopleDetail()
 
 const isModalOpen = ref(false)
 
 const infoText = ref('')
 const infoDate = ref('')
+const descText = ref('')
 const infoImage = ref<File | null>(null)
+const ocoId = ref(123) // Defina o ID da ocorrência dinamicamente
 
 const openModal = () => {
 	isModalOpen.value = true
@@ -21,16 +28,60 @@ const handleImageUpload = (event: Event) => {
 	}
 }
 
-const submitForm = () => {
-	console.log('Texto:', infoText.value)
-	console.log('Data:', infoDate.value)
-	console.log('Imagem:', infoImage.value)
-	closeModal()
+const submitForm = async () => {
+	if (!infoText.value || !infoDate.value || !descText.value) {
+		Swal.fire({
+			icon: 'error',
+			title: 'Oops...',
+			text: 'Preencha todos os campos obrigatórios!',
+		})
+		return
+	}
+
+	const params: any = {
+		informacao: infoText.value,
+		descricao: descText.value,
+		data: infoDate.value,
+		ocoId: ocoId.value,
+		files: infoImage.value ? [infoImage.value] : [],
+	}
+
+	console.log(params)
+
+	try {
+		const res = await postPeoples(params)
+		console.log('Resposta do servidor:', res)
+		Swal.fire({
+			icon: 'success',
+			title: 'Informação enviada com sucesso!',
+			showConfirmButton: false,
+			timer: 1500,
+		})
+		// Limpar campos
+		descText.value = ''
+		infoText.value = ''
+		infoDate.value = ''
+		infoImage.value = null
+		closeModal()
+	} catch (error) {
+		console.error('Erro ao enviar:', error)
+		Swal.fire({
+			icon: 'error',
+			title: 'Oops...',
+			text: 'Ocorreu um erro ao enviar a informação!',
+		})
+	}
 }
 </script>
 
 <template>
-	<button @click="openModal" class="bg-blue-600 text-white px-4 py-2 rounded">Abrir Modal</button>
+	<button
+		id="btn-help"
+		@click="openModal"
+		class="bg-primary text-white font-bold rounded px-5 py-2"
+	>
+		Ajude a Encontrar
+	</button>
 
 	<div
 		v-if="isModalOpen"
@@ -48,19 +99,26 @@ const submitForm = () => {
 			<h2 class="text-xl font-bold text-center">Informações do Desaparecimento</h2>
 
 			<div class="flex flex-col gap-3">
-				<label class="font-semibold">Informação:</label>
+				<label class="font-semibold">Informação<span class="text-red-500">*</span>:</label>
 				<input
 					type="text"
 					v-model="infoText"
 					placeholder="Digite alguma informação"
-					class="border border-gray-300 rounded px-3 py-2 w-full focus:outline-none focus:ring-2 focus:ring-blue-500"
+					class="border border-gray-300 rounded px-3 py-2 w-full focus:outline-none focus:ring-2 focus:ring-blue-500 border-2 border-solid border-gray-300"
+				/>
+				<label class="font-semibold">Descrição<span class="text-red-500">*</span>:</label>
+				<input
+					type="text"
+					v-model="descText"
+					placeholder="Detalhe mais sua informação"
+					class="border border-gray-300 rounded px-3 py-2 w-full focus:outline-none focus:ring-2 focus:ring-blue-500 border-2 border-solid border-gray-300"
 				/>
 
-				<label class="font-semibold">Data:</label>
+				<label class="font-semibold">Data<span class="text-red-500">*</span>:</label>
 				<input
 					type="date"
 					v-model="infoDate"
-					class="border border-gray-300 rounded px-3 py-2 w-full focus:outline-none focus:ring-2 focus:ring-blue-500"
+					class="border border-gray-300 rounded px-3 py-2 w-full focus:outline-none focus:ring-2 focus:ring-blue-500 border-2 border-solid border-gray-300"
 				/>
 
 				<label class="font-semibold">Imagem:</label>
@@ -68,7 +126,7 @@ const submitForm = () => {
 					type="file"
 					@change="handleImageUpload"
 					accept="image/*"
-					class="border border-gray-300 rounded px-3 py-2 w-full focus:outline-none focus:ring-2 focus:ring-blue-500"
+					class="border border-gray-300 rounded px-3 py-2 w-full focus:outline-none focus:ring-2 focus:ring-blue-500 border-2 border-solid border-gray-400"
 				/>
 			</div>
 
