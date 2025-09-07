@@ -1,6 +1,9 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import LayoutDefault from '@/layouts/LayoutDefault.vue'
-import HomeView from '@/views/HomeView.vue'
+import LayoutDetails from '@/layouts/LayoutDetail.vue'
+// import HomeView from '@/views/HomeView.vue'
+import CardPeople from '@/components/CardPeople.vue'
+import PeopleDetail from '@/components/PeopleDetail.vue'
 
 const router = createRouter({
 	history: createWebHistory(import.meta.env.BASE_URL),
@@ -12,7 +15,18 @@ const router = createRouter({
 				{
 					path: '',
 					name: 'home',
-					component: HomeView,
+					component: CardPeople,
+				},
+			],
+		},
+		{
+			path: '/details/:id',
+			component: LayoutDetails,
+			children: [
+				{
+					path: '',
+					name: 'details',
+					component: PeopleDetail,
 				},
 			],
 		},

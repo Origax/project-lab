@@ -8,7 +8,7 @@
 			</div>
 			<div id="card-info" class="w-full">
 				<div class="card-content grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
-					<div
+					<!-- <div
 						class="card flex flex-col bg-gray-100 rounded-b-2 mx-2 shadow-md rounded-lg relative"
 					>
 						<div class="card-header p-2 relative">
@@ -41,7 +41,7 @@
 								><span class="hidden"></span
 							></a>
 						</div>
-					</div>
+					</div> -->
 					<div
 						class="card feminino flex flex-col bg-gray-100 rounded-b-2 mx-2 shadow-md rounded-lg relative"
 					>
@@ -111,8 +111,9 @@
 /* Apaga só os outros quando um card está em hover */
 .card-content:has(.card:hover) .card:not(:hover) {
 	box-shadow: 3px 3px 18px 5px gray;
-	/* filter: blur(0.082rem); */
-	filter: brightness(0.9); /* Ver se faz sentido manter esse filter de luz ou o de blur*/
+	filter: blur(0.082rem);
+	/* Ver se faz sentido manter esse filter de luz ou o de blur*/
+	/* filter: brightness(0.9);  */
 	opacity: 0.8;
 	transform: scale(0.97);
 	transition:

@@ -1,16 +1,13 @@
 <script setup lang="ts">
 import Header from '../components/Header.vue'
 import Footer from '../components/Footer.vue'
-// import CardPeople from '../components/CardPeople.vue'
-import FilterPeople from '../components/FilterPeople.vue'
+import PeopleDetail from '../components/PeopleDetail.vue'
 </script>
 
 <template>
 	<Header />
 	<main id="main-home">
-		<FilterPeople />
-		<router-view />
-		<!-- <CardPeople /> -->
+		<PeopleDetail />
 	</main>
 	<Footer />
 </template>
