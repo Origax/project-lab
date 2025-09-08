@@ -88,7 +88,7 @@ onMounted(async () => {
 								{{ people.nome }}
 							</h1>
 							<h2 class="detail-importants text-center text-cian text-lg font-bold">
-								{{ people.idade }} anos - {{ people.sexo }}
+								{{ people.idade }} anos - {{ people.sexo == 'MASCULINO' ? 'Masculino' : 'Feminino' }}
 							</h2>
 						</div>
 						<div class="info-details mt-6">
