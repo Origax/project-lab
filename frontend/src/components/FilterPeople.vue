@@ -2,8 +2,6 @@
 import { onMounted, ref } from 'vue'
 import { useGetPeopleFilter } from '../composebles/useGetPeopleFilter'
 import { useGetStatus } from '../composebles/useFilter'
-// import Swal, { SweetAlertResult } from 'sweetalert2'
-// import 'sweetalert2/dist/sweetalert2.min.css'
 
 const { status, updateStatus, nameGenerous, statusGenerous } = useGetStatus()
 const { getPeoples, clearData } = useGetPeopleFilter()

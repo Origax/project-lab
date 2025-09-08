@@ -14,11 +14,3 @@
 		</div>
 	</header>
 </template>
-
-<style scoped>
-/* 
-
-scoped apenas para este arquivo 
-
-*/
-</style>
