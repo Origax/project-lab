@@ -44,7 +44,7 @@ onMounted(async () => {
 					</div>
 					<div
 						:class="[
-							'image-content rounded-xl mobile-tablet:w-full lg:w-80 tablets-mobile:w-full',
+							'image-content rounded-xl lg:w-80 mobile-tablet:w-full',
 							{
 								whereBorder: people?.ultimaOcorrencia?.dataLocalizacao == null,
 							},
@@ -52,7 +52,7 @@ onMounted(async () => {
 					>
 						<img
 							class="img people-detail-img rounded-lg w-full h-full object-cover object-top"
-							:src="people.urlFoto"
+							:src="people.urlFoto ?? '/images/no-image.webp'"
 							alt=""
 						/>
 					</div>
@@ -75,7 +75,7 @@ onMounted(async () => {
 						class="help-with-detail"
 					>
 						<div id="modal">
-							<Modal />
+							<Modal :oco-Id="people?.ultimaOcorrencia?.ocoId" />
 						</div>
 					</div>
 				</div>
@@ -133,7 +133,8 @@ onMounted(async () => {
 										people?.ultimaOcorrencia?.ocorrenciaEntrevDesapDTO
 											?.informacao &&
 										!['N/I', '', 'Não informado', 'NÃO INFORMADO'].includes(
-											people?.ultimaOcorrencia?.informacao,
+											people?.ultimaOcorrencia?.ocorrenciaEntrevDesapDTO
+												?.informacao
 										)
 									"
 									class="info-additional mt-1"
@@ -171,7 +172,7 @@ onMounted(async () => {
 								>
 									<p class="location-safe-details text-lg">
 										<strong>Encontrado vivo:</strong>
-										{{ people.ultimaOcorrencia.encontradoVivo ? 'Sim' : 'Nao' }}
+										{{ people.ultimaOcorrencia.encontradoVivo ? 'Sim' : 'Não' }}
 									</p>
 								</div>
 							</div>
@@ -190,7 +191,7 @@ onMounted(async () => {
 .image-content {
 	border: 3px solid var(--locate);
 	border-bottom-left-radius: 0px;
-	height: 340px;
+	height: auto;
 }
 
 .people-detail-img {
@@ -232,7 +233,7 @@ onMounted(async () => {
 	width: 48px;
 	height: 48px;
 	border: 5px solid #fff;
-	border-bottom-color: #ff3d00;
+	border-bottom-color: var(--cian);
 	border-radius: 50%;
 	display: inline-block;
 	box-sizing: border-box;
@@ -248,9 +249,4 @@ onMounted(async () => {
 	}
 }
 
-@media (min-width: 578px) and (max-width: 820px) {
-	.image-content {
-		height: 380px;
-	}
-}
 </style>

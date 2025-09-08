@@ -11,6 +11,22 @@
 	--gray-disable: #7e7f84;
 }
 
+html, body {
+  height: 100%;
+  margin: 0;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+}
+
+#app {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
 input {
 	outline: none;
 	border: none;

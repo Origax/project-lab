@@ -6,7 +6,7 @@ import FilterPeople from '../components/FilterPeople.vue'
 
 <template>
 	<Header />
-	<main id="main-home">
+	<main id="main-home"  class="flex-1">
 		<FilterPeople />
 		<router-view />
 	</main>

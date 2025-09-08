@@ -15,8 +15,6 @@ const statusGenerous = (stsGen) => {
 	return (nameGenerous.value = stsGen)
 }
 
-const generousSelectName = 'Pessoas' // Verificar depois para alterar o nome de acordo com o Genero selecionado
-
 export function useGetStatus() {
-	return { status, statusName, nameGenerous, generousSelectName, statusGenerous, updateStatus }
+	return { status, statusName, nameGenerous, statusGenerous, updateStatus }
 }

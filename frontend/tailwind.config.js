@@ -3,8 +3,9 @@ module.exports = {
 	theme: {
 		extend: {
 			screens: {
-				'mobile-tablet': { max: '768px' },
-				'tablets-mobile': { min: '576px', max: '820px' },
+				'mobile-small': { max: '410px' },
+				'mobile-tablet': { max: '1024px' },
+				'tablets-mobile': { min: '576px', max: '992px' },
 				'tablets-desktop': { min: '769px', max: '1024px' },
 			},
 		},

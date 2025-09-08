@@ -6,13 +6,15 @@ import 'sweetalert2/dist/sweetalert2.min.css'
 
 const { postPeoples } = usePostPeopleDetail()
 
+const props = defineProps({ocoId: {type: Number, required: true}})
+
 const isModalOpen = ref(false)
 
 const infoText = ref('')
 const infoDate = ref('')
 const descText = ref('')
 const infoImage = ref<File | null>(null)
-const ocoId = ref(123) // Defina o ID da ocorrência dinamicamente
+const ocoId = ref(props.ocoId)
 
 const openModal = () => {
 	isModalOpen.value = true
@@ -46,25 +48,20 @@ const submitForm = async () => {
 		files: infoImage.value ? [infoImage.value] : [],
 	}
 
-	console.log(params)
-
 	try {
 		const res = await postPeoples(params)
-		console.log('Resposta do servidor:', res)
 		Swal.fire({
 			icon: 'success',
 			title: 'Informação enviada com sucesso!',
 			showConfirmButton: false,
 			timer: 1500,
 		})
-		// Limpar campos
 		descText.value = ''
 		infoText.value = ''
 		infoDate.value = ''
 		infoImage.value = null
 		closeModal()
 	} catch (error) {
-		console.error('Erro ao enviar:', error)
 		Swal.fire({
 			icon: 'error',
 			title: 'Oops...',
@@ -132,7 +129,7 @@ const submitForm = async () => {
 
 			<button
 				@click="submitForm"
-				class="bg-green-600 text-white font-bold rounded px-4 py-2 hover:bg-green-700 mt-2"
+				class="bg-primary text-white font-bold rounded px-4 py-2 mt-2"
 			>
 				Salvar
 			</button>

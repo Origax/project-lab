@@ -67,29 +67,24 @@ const nextPage = () => {
 		currentPage.value++
 	}
 }
-
-let { statusName, generousSelectName } = useGetStatus()
 </script>
 
 <template>
 	<div id="main-content" class="content-main">
 		<div class="container mx-auto px-6 py-4 flex flex-col justify-between items-center">
 			<div id="title-card-content" class="mb-7">
-				<h1 class="text-3xl font-bold text-primary mx-auto uppercase">
-					Resultado
-					<!-- {{ generousSelectName }} {{ statusName }} -->
-				</h1>
+				<h1 class="text-3xl font-bold text-primary mx-auto uppercase">Resultado</h1>
 			</div>
 			<div id="card-info" class="w-full">
 				<div
-					class="card-content grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 tablets-desktop:grid-cols-3 gap-11"
+					class="card-content grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 tablets-desktop:grid-cols-2 gap-11"
 				>
 					<div
 						class="card-people flex flex-col bg-gray-100 rounded-b-2 mx-2 shadow-md rounded-lg relative"
 						v-for="people in currentPageData"
 						:key="people.id"
 					>
-						<div class="card-header p-2 h-72 mobile-tablet:h-96">
+						<div class="card-header p-2 h-72 mobile-tablet:h-3/5">
 							<img
 								class="img rounded-lg w-full h-full object-cover object-top"
 								:src="people?.urlFoto ?? '/images/no-image.webp'"
@@ -129,7 +124,7 @@ let { statusName, generousSelectName } = useGetStatus()
 							<div class="card-content-body my-1">
 								<h3 class="card-age text-gray-700">
 									{{ people.idade }} anos,
-									<span class="card-generous lowercase">{{ people.sexo }}</span>
+									<span class="card-generous">{{ people.sexo == 'MASCULINO' ? 'Masculino' : 'Feminino' }}</span>
 								</h3>
 							</div>
 							<div class="card-content-footer flex flex-col my-1">
@@ -387,9 +382,9 @@ let { statusName, generousSelectName } = useGetStatus()
 }
 
 .pagination-number.active {
-	background: var(--primary, #007bff);
+	background: var(--primary);
 	color: white;
-	border-color: var(--primary, #007bff);
+	border-color: var(--primary);
 }
 
 .pagination-info {

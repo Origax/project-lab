@@ -6,7 +6,7 @@ import PeopleDetail from '../components/PeopleDetail.vue'
 
 <template>
 	<Header />
-	<main id="main-home">
+	<main id="main-home" class="flex-1">
 		<PeopleDetail />
 	</main>
 	<Footer />
